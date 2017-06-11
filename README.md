@@ -95,7 +95,7 @@ Example distributions: Ubuntu
 Example:
 
 ```console
-sudo dpkg-i go-hello-plugins_M.m.P-I_amd64.deb
+sudo dpkg -i go-hello-plugins_M.m.P-I_amd64.deb
 ```
 
 ### Cleanup
