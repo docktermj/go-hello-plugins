@@ -62,7 +62,7 @@ ENV GO_PACKAGE="github.com/docktermj/${PROGRAM_NAME}"
 RUN go get github.com/docopt/docopt-go
 RUN go get github.com/hashicorp/go-plugin
 
-# Add local files from the Git repository.
+# Copy local files from the Git repository.
 COPY . ${GOPATH}/src/${GO_PACKAGE}
 
 # Build go program.
