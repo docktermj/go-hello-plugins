@@ -1,11 +1,13 @@
 package main
 
 import (
+	"github.com/docktermj/go-hello-plugins/interfaces/hello"
 	"github.com/hashicorp/go-plugin"
-	"github.com/docktermj/go-hello-plugins/interfaces/hello"	
 )
 
+// ----------------------------------------------------------------------------
 // Implementation of interface.
+// ----------------------------------------------------------------------------
 
 type Hello struct{}
 
@@ -13,18 +15,23 @@ func (Hello) Speak() string {
 	return "Hello Universe!"
 }
 
-// Install plugin.
+// ----------------------------------------------------------------------------
+// Install and run plugin.
+// ----------------------------------------------------------------------------
 
+// Information to verify correct plugin.
 var handshakeConfig = plugin.HandshakeConfig{
 	ProtocolVersion:  1,
-	MagicCookieKey:   "BASIC_PLUGIN_ENGLISH",
-	MagicCookieValue: "hello-english",
+	MagicCookieKey:   "hello-english-cookie-key",
+	MagicCookieValue: "hello-english-cookie-value",
 }
 
+// pluginMap is the map of plugins we can dispense.
 var pluginMap = map[string]plugin.Plugin{
-	"hello-english": &hello.HelloPlugin{Impl: new(Hello)},
+	"hello-english": &hello.Plugin{Impl: new(Hello)},
 }
 
+// Run the plugin.
 func main() {
 	plugin.Serve(&plugin.ServeConfig{
 		HandshakeConfig: handshakeConfig,

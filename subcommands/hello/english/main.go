@@ -4,25 +4,31 @@ package english
 
 import (
 	"fmt"
-	"github.com/docktermj/go-hello-plugins/interfaces/hello"
+	"io/ioutil"
 	"log"
 	"os/exec"
 
+	"github.com/docktermj/go-hello-plugins/interfaces/hello"
 	"github.com/hashicorp/go-plugin"
 )
 
+// Information to verify correct plugin.
 var handshakeConfig = plugin.HandshakeConfig{
 	ProtocolVersion:  1,
-	MagicCookieKey:   "BASIC_PLUGIN_ENGLISH",
-	MagicCookieValue: "helloEnglish",
+	MagicCookieKey:   "hello-english-cookie-key",
+	MagicCookieValue: "hello-english-cookie-value",
 }
 
 // pluginMap is the map of plugins we can dispense.
 var pluginMap = map[string]plugin.Plugin{
-	"helloEnglish": &hello.HelloPlugin{},
+	"hello-english": &hello.Plugin{},
 }
 
+// The command.
 func Command(argv []string) {
+
+	// We don't want to see the plugin logs.
+	log.SetOutput(ioutil.Discard)
 
 	// We're a host! Start by launching the plugin process.
 	client := plugin.NewClient(&plugin.ClientConfig{
@@ -32,20 +38,19 @@ func Command(argv []string) {
 	})
 	defer client.Kill()
 
-	// Connect via RPC
+	// Connect via RPC.
 	rpcClient, err := client.Client()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// Request the plugin
-	raw, err := rpcClient.Dispense("englishHello")
+	// Request the plugin.
+	raw, err := rpcClient.Dispense("hello-english")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// We should have a Greeter now! This feels like a normal interface
-	// implementation but is in fact over an RPC connection.
+	// Call the plugin.
 	myHello := raw.(hello.Hello)
 	fmt.Println(myHello.Speak())
 }

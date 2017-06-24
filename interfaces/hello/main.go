@@ -18,9 +18,9 @@ type Hello interface {
 // RPC
 // ----------------------------------------------------------------------------
 
-type HelloRPC struct{ client *rpc.Client }
+type RPC struct{ client *rpc.Client }
 
-func (g *HelloRPC) Speak() string {
+func (g *RPC) Speak() string {
 	var resp string
 	err := g.client.Call("Plugin.Speak", new(interface{}), &resp)
 	if err != nil {
@@ -34,11 +34,11 @@ func (g *HelloRPC) Speak() string {
 // RPC
 // ----------------------------------------------------------------------------
 
-type HelloRPCServer struct {
+type RPCServer struct {
 	Impl Hello
 }
 
-func (s *HelloRPCServer) Speak(args interface{}, resp *string) error {
+func (s *RPCServer) Speak(args interface{}, resp *string) error {
 	*resp = s.Impl.Speak()
 	return nil
 }
@@ -47,14 +47,14 @@ func (s *HelloRPCServer) Speak(args interface{}, resp *string) error {
 // Plugin
 // ----------------------------------------------------------------------------
 
-type HelloPlugin struct {
+type Plugin struct {
 	Impl Hello
 }
 
-func (p *HelloPlugin) Server(*plugin.MuxBroker) (interface{}, error) {
-	return &HelloRPCServer{Impl: p.Impl}, nil
+func (p *Plugin) Server(*plugin.MuxBroker) (interface{}, error) {
+	return &RPCServer{Impl: p.Impl}, nil
 }
 
-func (HelloPlugin) Client(b *plugin.MuxBroker, c *rpc.Client) (interface{}, error) {
-	return &HelloRPC{client: c}, nil
+func (Plugin) Client(b *plugin.MuxBroker, c *rpc.Client) (interface{}, error) {
+	return &RPC{client: c}, nil
 }

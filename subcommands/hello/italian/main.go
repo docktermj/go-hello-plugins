@@ -24,7 +24,7 @@ var handshakeConfig = plugin.HandshakeConfig{
 
 // pluginMap is the map of plugins we can dispense.
 var pluginMap = map[string]plugin.Plugin{
-	"greeter": &hello.HelloPlugin{},
+	"greeter": &hello.Plugin{},
 }
 
 func Command(argv []string) {
