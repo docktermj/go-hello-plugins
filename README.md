@@ -6,12 +6,13 @@ where "M.m.P-I" is Major.minor.Patch-Iteration.
 
 ## Usage
 
-A simple "hello world" program.
+A simple "hello world" style program.
 The purpose of the repository it to show how to:
 
 1. Build go executable locally
 1. Build go executable via Docker
 1. Build RPM / DEB installation via Docker.
+1. Show how to use HashiCorp's go-plugin
 
 ### Invocation
 
@@ -59,7 +60,7 @@ The results will be in the `${GOPATH}/bin` directory.
 
 ```console
 cd ${PROJECT_DIR}/go-hello-plugins
-sudo make build
+make build
 ```
 
 The results will be in the `.../target` directory.
@@ -101,5 +102,5 @@ sudo dpkg -i go-hello-plugins_M.m.P-I_amd64.deb
 ### Cleanup
 
 ```console
-sudo make clean
+make clean
 ```
