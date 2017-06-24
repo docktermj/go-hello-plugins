@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"github.com/docktermj/go-hello-plugins/plugins/hello"
 	"log"
-	"os"
 	"os/exec"
 
 	"github.com/hashicorp/go-plugin"
@@ -29,9 +28,6 @@ func Command(argv []string) {
 	client := plugin.NewClient(&plugin.ClientConfig{
 		HandshakeConfig: handshakeConfig,
 		Plugins:         pluginMap,
-		Stderr:          os.Stdout,
-		SyncStderr:      os.Stdout,
-		SyncStdout:      os.Stdout,
 		Cmd:             exec.Command("./plugins/hello/english/english", "plugin"),
 	})
 	defer client.Kill()
