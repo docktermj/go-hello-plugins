@@ -20,7 +20,7 @@ func Command(argv []string) {
 	client := plugin.NewClient(&plugin.ClientConfig{
 		HandshakeConfig: handshakeConfig,
 		Plugins:         pluginMap,
-		Cmd:             exec.Command("./plugin/plugin", "plugin"),
+		Cmd:             exec.Command("./plugins/hello/german/german", "plugin"),
 	})
 	defer client.Kill()
 

@@ -8,7 +8,7 @@ import (
 // Here is a real implementation of Greeter
 type GreeterHello struct{}
 
-func (GreeterHello) Greet() string { return "Hello!" }
+func (GreeterHello) Greet() string { return "Hello German!" }
 
 // handshakeConfigs are used to just do a basic handshake between
 // a plugin and host. If the handshake fails, a user friendly error is shown.

@@ -32,7 +32,7 @@ func Command(argv []string) {
 		Stderr:          os.Stdout,
 		SyncStderr:      os.Stdout,
 		SyncStdout:      os.Stdout,
-		Cmd:             exec.Command("./plugins/hello/english", "plugin"),
+		Cmd:             exec.Command("./plugins/hello/english/english", "plugin"),
 	})
 	defer client.Kill()
 
