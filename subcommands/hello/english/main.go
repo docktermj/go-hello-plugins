@@ -4,7 +4,7 @@ package english
 
 import (
 	"fmt"
-	"github.com/docktermj/go-hello-plugins/plugins/hello"
+	"github.com/docktermj/go-hello-plugins/interfaces/hello"
 	"log"
 	"os/exec"
 
@@ -19,7 +19,7 @@ var handshakeConfig = plugin.HandshakeConfig{
 
 // pluginMap is the map of plugins we can dispense.
 var pluginMap = map[string]plugin.Plugin{
-	"helloEnglish": &hello.MyPlugin{},
+	"helloEnglish": &hello.HelloPlugin{},
 }
 
 func Command(argv []string) {
