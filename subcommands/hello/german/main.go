@@ -2,7 +2,7 @@ package german
 
 import (
 	"fmt"
-//	"io/ioutil"
+	"io/ioutil"
 	"log"
 	"os/exec"
 
@@ -12,20 +12,17 @@ import (
 
 func Command(argv []string) {
 	
-	fmt.Println("HERE")
-
+	// -----------------------------------------------------------
 	// We don't want to see the plugin logs.
-//	log.SetOutput(ioutil.Discard)
+	log.SetOutput(ioutil.Discard)
 
 	// We're a host! Start by launching the plugin process.
 	client := plugin.NewClient(&plugin.ClientConfig{
 		HandshakeConfig: handshakeConfig,
 		Plugins:         pluginMap,
-		Cmd:             exec.Command("./plugins/hello/german", "plugin"),
+		Cmd:             exec.Command("./plugin/plugin", "plugin"),
 	})
 	defer client.Kill()
-
-	fmt.Println("1")
 
 	// Connect via RPC
 	rpcClient, err := client.Client()
@@ -33,21 +30,17 @@ func Command(argv []string) {
 		log.Fatal(err)
 	}
 
-	fmt.Println("2")
-
 	// Request the plugin
 	raw, err := rpcClient.Dispense("greeter")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	fmt.Println("3")
-
 	// We should have a Greeter now! This feels like a normal interface
 	// implementation but is in fact over an RPC connection.
 	greeter := raw.(example.Greeter)
 	fmt.Println(greeter.Greet())
-	fmt.Println("THERE")	
+	// -----------------------------------------------------------
 
 }
 
