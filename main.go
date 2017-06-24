@@ -9,11 +9,12 @@ import (
 
 	"github.com/docktermj/go-hello-plugins/common/runner"
 	"github.com/docktermj/go-hello-plugins/subcommands/hello"
+	"github.com/docktermj/go-hello-plugins/commons"	
 	"github.com/docopt/docopt-go"
 	"os/exec"
 
 	"github.com/hashicorp/go-plugin"
-	"github.com/hashicorp/go-plugin/examples/basic/commons"
+//	"github.com/hashicorp/go-plugin/examples/basic/commons"
 )
 
 // Values updated via "go install -ldflags" parameters.

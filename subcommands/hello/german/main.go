@@ -7,7 +7,7 @@ import (
 	"os/exec"
 
 	"github.com/hashicorp/go-plugin"
-	"github.com/hashicorp/go-plugin/examples/basic/commons"
+	"github.com/docktermj/go-hello-plugins/commons"	
 )
 
 func Command(argv []string) {
