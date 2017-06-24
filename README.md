@@ -44,6 +44,7 @@ git clone git@github.com:docktermj/go-hello-plugins.git
 
 ```console
 go get github.com/docopt/docopt-go
+go get github.com/hashicorp/go-plugin
 ```
 
 ### Build

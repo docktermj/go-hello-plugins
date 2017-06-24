@@ -4,18 +4,21 @@ package hello
 
 import (
 	"net/rpc"
+	"fmt"
 
 	"github.com/hashicorp/go-plugin"
 )
 
-type Plugin struct {
+type MyPlugin struct {
 	Impl Hello
 }
 
-func (thisType *Plugin) Server(*plugin.MuxBroker) (interface{}, error) {
+func (thisType *MyPlugin) Server(*plugin.MuxBroker) (interface{}, error) {
+	fmt.Println("In MyPlugin.Server")	
 	return &RpcServer{Impl: thisType.Impl}, nil
 }
 
-func (Plugin) Client(b *plugin.MuxBroker, c *rpc.Client) (interface{}, error) {
-	return &Rpc{client: c}, nil
+func (MyPlugin) Client(broker *plugin.MuxBroker, client *rpc.Client) (interface{}, error) {
+	fmt.Println("In MyPlugin.Client")	
+	return &Rpc{client: client}, nil
 }
