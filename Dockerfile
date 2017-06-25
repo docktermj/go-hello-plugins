@@ -65,6 +65,14 @@ RUN go get github.com/hashicorp/go-plugin
 # Copy local files from the Git repository.
 COPY . ${GOPATH}/src/${GO_PACKAGE}
 
+# Build plugins
+RUN go install ${GO_PACKAGE}/plugin/greeter/greeter-english
+RUN go install ${GO_PACKAGE}/plugin/greeter/greeter-german
+RUN go install ${GO_PACKAGE}/plugin/greeter/greeter-italian
+RUN go install ${GO_PACKAGE}/plugin/hello/hello-english
+RUN go install ${GO_PACKAGE}/plugin/hello/hello-german
+RUN go install ${GO_PACKAGE}/plugin/hello/hello-italian
+
 # Build go program.
 RUN go install \
     -ldflags "-X main.programName=${PROGRAM_NAME} -X main.buildVersion=${BUILD_VERSION} -X main.buildIteration=${BUILD_ITERATION}" \

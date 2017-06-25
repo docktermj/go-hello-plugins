@@ -5,8 +5,8 @@ import (
 	"log"
 
 	"github.com/docktermj/go-hello-plugins/common/runner"
-	"github.com/docktermj/go-hello-plugins/subcommands/hello"
-	"github.com/docktermj/go-hello-plugins/subcommands/greetings"	
+	"github.com/docktermj/go-hello-plugins/subcommand/greetings"
+	"github.com/docktermj/go-hello-plugins/subcommand/hello"
 	"github.com/docopt/docopt-go"
 )
 
@@ -49,8 +49,8 @@ See 'go-hello-plugins <command> --help' for more information on a specific comma
 	// Reference: http://stackoverflow.com/questions/6769020/go-map-of-functions
 
 	functions := map[string]interface{}{
-		"greetings": greetings.Command,		
-		"hello": hello.Command,
+		"greetings": greetings.Command,
+		"hello":     hello.Command,
 	}
 
 	runner.Run(argv, functions, usage)

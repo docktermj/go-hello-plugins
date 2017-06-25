@@ -51,6 +51,20 @@ go get github.com/hashicorp/go-plugin
 
 #### Local build
 
+Build plugins
+
+```console
+go install github.com/docktermj/go-hello-plugins/plugin/greeter/greeter-english
+go install github.com/docktermj/go-hello-plugins/plugin/greeter/greeter-german
+go install github.com/docktermj/go-hello-plugins/plugin/greeter/greeter-italian
+
+go install github.com/docktermj/go-hello-plugins/plugin/hello/hello-english
+go install github.com/docktermj/go-hello-plugins/plugin/hello/hello-german
+go install github.com/docktermj/go-hello-plugins/plugin/hello/hello-italian
+```
+
+Build program
+
 ```console
 go install github.com/docktermj/go-hello-plugins
 ```
