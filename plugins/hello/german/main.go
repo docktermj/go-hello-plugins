@@ -1,30 +1,37 @@
 package main
 
 import (
+	"github.com/docktermj/go-hello-plugins/interfaces/hello"
 	"github.com/hashicorp/go-plugin"
-	"github.com/hashicorp/go-plugin/examples/basic/commons"
 )
 
-// Here is a real implementation of Greeter
-type GreeterHello struct{}
+// ----------------------------------------------------------------------------
+// Implementation of interface.
+// ----------------------------------------------------------------------------
 
-func (GreeterHello) Greet() string { return "Hello German2!" }
+type HelloGerman struct{}
 
-// handshakeConfigs are used to just do a basic handshake between
-// a plugin and host. If the handshake fails, a user friendly error is shown.
-// This prevents users from executing bad plugins or executing a plugin
-// directory. It is a UX feature, not a security feature.
+func (HelloGerman) Speak() string {
+	return "Hallo, Welt!"
+}
+
+// ----------------------------------------------------------------------------
+// Install and run plugin.
+// ----------------------------------------------------------------------------
+
+// Information to verify correct plugin.
 var handshakeConfig = plugin.HandshakeConfig{
 	ProtocolVersion:  1,
-	MagicCookieKey:   "BASIC_PLUGIN",
-	MagicCookieValue: "hello",
+	MagicCookieKey:   "hello-german-cookie-key",
+	MagicCookieValue: "hello-german-cookie-value",
 }
 
 // pluginMap is the map of plugins we can dispense.
 var pluginMap = map[string]plugin.Plugin{
-	"greeter": &example.GreeterPlugin{Impl: new(GreeterHello)},
+	"hello-german": &hello.Plugin{Impl: new(HelloGerman)},
 }
 
+// Run the plugin.
 func main() {
 	plugin.Serve(&plugin.ServeConfig{
 		HandshakeConfig: handshakeConfig,

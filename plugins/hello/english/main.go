@@ -9,10 +9,10 @@ import (
 // Implementation of interface.
 // ----------------------------------------------------------------------------
 
-type Hello struct{}
+type HelloEnglish struct{}
 
-func (Hello) Speak() string {
-	return "Hello Universe!"
+func (HelloEnglish) Speak() string {
+	return "Hello World!"
 }
 
 // ----------------------------------------------------------------------------
@@ -28,7 +28,7 @@ var handshakeConfig = plugin.HandshakeConfig{
 
 // pluginMap is the map of plugins we can dispense.
 var pluginMap = map[string]plugin.Plugin{
-	"hello-english": &hello.Plugin{Impl: new(Hello)},
+	"hello-english": &hello.Plugin{Impl: new(HelloEnglish)},
 }
 
 // Run the plugin.

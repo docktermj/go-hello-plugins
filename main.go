@@ -6,6 +6,7 @@ import (
 
 	"github.com/docktermj/go-hello-plugins/common/runner"
 	"github.com/docktermj/go-hello-plugins/subcommands/hello"
+	"github.com/docktermj/go-hello-plugins/subcommands/greetings"	
 	"github.com/docopt/docopt-go"
 )
 
@@ -24,6 +25,7 @@ Options:
    -h, --help
 
 The go-hello-plugins commands are:
+   greetings        Greetings from U.S.A.
    hello            Hello, World!
 
 See 'go-hello-plugins <command> --help' for more information on a specific command.
@@ -47,6 +49,7 @@ See 'go-hello-plugins <command> --help' for more information on a specific comma
 	// Reference: http://stackoverflow.com/questions/6769020/go-map-of-functions
 
 	functions := map[string]interface{}{
+		"greetings": greetings.Command,		
 		"hello": hello.Command,
 	}
 

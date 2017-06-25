@@ -51,6 +51,6 @@ func Command(argv []string) {
 	}
 
 	// Call the plugin.
-	myHello := raw.(hello.Hello)
-	fmt.Println(myHello.Speak())
+	greeter := raw.(hello.Hello)
+	fmt.Println(greeter.Speak())
 }

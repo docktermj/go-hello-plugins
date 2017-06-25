@@ -8,7 +8,7 @@ import (
 	"log"
 	"os/exec"
 
-	"github.com/docktermj/go-hello-plugins/interfaces/greeter"
+	"github.com/docktermj/go-hello-plugins/interfaces/hello"
 	"github.com/hashicorp/go-plugin"
 )
 
@@ -18,13 +18,13 @@ import (
 // directory. It is a UX feature, not a security feature.
 var handshakeConfig = plugin.HandshakeConfig{
 	ProtocolVersion:  1,
-	MagicCookieKey:   "BASIC_PLUGIN",
-	MagicCookieValue: "hello",
+	MagicCookieKey:   "hello-german-cookie-key",
+	MagicCookieValue: "hello-german-cookie-value",
 }
 
 // pluginMap is the map of plugins we can dispense.
 var pluginMap = map[string]plugin.Plugin{
-	"greeter": &greeter.GreeterPlugin{},
+	"hello-german": &hello.Plugin{},
 }
 
 func Command(argv []string) {
@@ -47,13 +47,13 @@ func Command(argv []string) {
 	}
 
 	// Request the plugin
-	raw, err := rpcClient.Dispense("greeter")
+	raw, err := rpcClient.Dispense("hello-german")
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// We should have a Greeter now! This feels like a normal interface
 	// implementation but is in fact over an RPC connection.
-	greeter := raw.(greeter.Greeter)
-	fmt.Println(greeter.Greet())
+	greeter := raw.(hello.Hello)
+	fmt.Println(greeter.Speak())
 }

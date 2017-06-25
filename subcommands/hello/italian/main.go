@@ -18,13 +18,13 @@ import (
 // directory. It is a UX feature, not a security feature.
 var handshakeConfig = plugin.HandshakeConfig{
 	ProtocolVersion:  1,
-	MagicCookieKey:   "BASIC_PLUGIN_ITALY",
-	MagicCookieValue: "hello-italy",
+	MagicCookieKey:   "hello-italian-cookie-key",
+	MagicCookieValue: "hello-italian-cookie-value",
 }
 
 // pluginMap is the map of plugins we can dispense.
 var pluginMap = map[string]plugin.Plugin{
-	"greeter": &hello.Plugin{},
+	"hello-italian": &hello.Plugin{},
 }
 
 func Command(argv []string) {
@@ -47,7 +47,7 @@ func Command(argv []string) {
 	}
 
 	// Request the plugin
-	raw, err := rpcClient.Dispense("greeter")
+	raw, err := rpcClient.Dispense("hello-italian")
 	if err != nil {
 		log.Fatal(err)
 	}
