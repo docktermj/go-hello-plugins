@@ -27,6 +27,7 @@ var pluginMap = map[string]plugin.Plugin{
 	"hello-italian": &hello.Plugin{},
 }
 
+// The command.
 func Command(argv []string) {
 
 	// We don't want to see the plugin logs.
@@ -40,7 +41,7 @@ func Command(argv []string) {
 	})
 	defer client.Kill()
 
-	// Connect via RPC
+	// Connect via RPC.
 	rpcClient, err := client.Client()
 	if err != nil {
 		log.Fatal(err)

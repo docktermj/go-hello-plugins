@@ -26,7 +26,6 @@ func (g *RPC) Speak() string {
 	if err != nil {
 		panic(err)
 	}
-
 	return resp
 }
 

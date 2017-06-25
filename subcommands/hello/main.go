@@ -14,9 +14,9 @@ Usage:
     go-hello-plugins hello <subcommand> [<args>...]
 
 Subcommands:
-    english    Hello, Universe!
-    german     Hallo, Universen!
-    italian    Hi from Italy!
+    english    Hello World!
+    german     Hallo, Welt!
+    italian    Ciao mondo!
 `
 
 	functions := map[string]interface{}{
